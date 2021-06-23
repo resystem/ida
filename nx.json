@@ -1,0 +1,30 @@
+{
+  "npmScope": "ida",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "accounts": {
+      "tags": []
+    },
+    "accounts-e2e": {
+      "tags": [],
+      "implicitDependencies": ["accounts"]
+    }
+  }
+}
