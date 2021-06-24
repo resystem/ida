@@ -1,230 +1,77 @@
-import styled from 'styled-components';
+import { useState } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Skeleton from './components/skeleton/skeleton-page';
+import Brand from './components/brand/brand';
+import { Container, HeaderContent, Main, BGSVG } from './app.style';
+import '../assets/css/reset.css';
 
-import { ReactComponent as Logo } from './logo.svg';
-import star from './star.svg';
+export const App = () => {
+  const [loading] = useState(true);
 
-const StyledApp = styled.div`
-  font-family: sans-serif;
-  min-width: 300px;
-  max-width: 600px;
-  margin: 50px auto;
-
-  .gutter-left {
-    margin-left: 9px;
-  }
-
-  .col-span-2 {
-    grid-column: span 2;
-  }
-
-  .flex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  header {
-    background-color: #143055;
-    color: white;
-    padding: 5px;
-    border-radius: 3px;
-  }
-
-  main {
-    padding: 0 36px;
-  }
-
-  p {
-    text-align: center;
-  }
-
-  h1 {
-    text-align: center;
-    margin-left: 18px;
-    font-size: 24px;
-  }
-
-  h2 {
-    text-align: center;
-    font-size: 20px;
-    margin: 40px 0 10px 0;
-  }
-
-  .resources {
-    text-align: center;
-    list-style: none;
-    padding: 0;
-    display: grid;
-    grid-gap: 9px;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .resource {
-    color: #0094ba;
-    height: 36px;
-    background-color: rgba(0, 0, 0, 0);
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 4px;
-    padding: 3px 9px;
-    text-decoration: none;
-  }
-
-  .resource:hover {
-    background-color: rgba(68, 138, 255, 0.04);
-  }
-
-  pre {
-    padding: 9px;
-    border-radius: 4px;
-    background-color: black;
-    color: #eee;
-  }
-
-  details {
-    border-radius: 4px;
-    color: #333;
-    background-color: rgba(0, 0, 0, 0);
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    padding: 3px 9px;
-    margin-bottom: 9px;
-  }
-
-  summary {
-    outline: none;
-    height: 36px;
-    line-height: 36px;
-  }
-
-  .github-star-container {
-    margin-top: 12px;
-    line-height: 20px;
-  }
-
-  .github-star-container a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
-  }
-
-  .github-star-badge {
-    color: #24292e;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    padding: 3px 10px;
-    border: 1px solid rgba(27, 31, 35, 0.2);
-    border-radius: 3px;
-    background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%);
-    margin-left: 4px;
-    font-weight: 600;
-  }
-
-  .github-star-badge:hover {
-    background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);
-    border-color: rgba(27, 31, 35, 0.35);
-    background-position: -0.5em;
-  }
-  .github-star-badge .material-icons {
-    height: 16px;
-    width: 16px;
-    margin-right: 4px;
-  }
-`;
-
-export function App() {
   return (
-    <StyledApp>
-      <header className="flex">
-        <Logo width="75" height="75" />
-        <h1>Welcome to accounts!</h1>
-      </header>
-      <main>
-        <h2>Resources &amp; Tools</h2>
-        <p>Thank you for using and showing some ♥ for Nx.</p>
-        <div className="flex github-star-container">
-          <a
-            href="https://github.com/nrwl/nx"
-            target="_blank"
-            rel="noopener noreferrer"
+    <Router>
+      <Container>
+        <HeaderContent>
+          <BGSVG
+            viewBox="0 0 255 197"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            {' '}
-            If you like Nx, please give it a star:
-            <div className="github-star-badge">
-              <img src={star} className="material-icons" alt="" />
-              Star
-            </div>
-          </a>
-        </div>
-        <p>Here are some links to help you get started.</p>
-        <ul className="resources">
-          <li className="col-span-2">
-            <a
-              className="resource flex"
-              href="https://egghead.io/playlists/scale-react-development-with-nx-4038"
-            >
-              Scale React Development with Nx (Course)
-            </a>
-          </li>
-          <li className="col-span-2">
-            <a
-              className="resource flex"
-              href="https://nx.dev/latest/react/tutorial/01-create-application"
-            >
-              Interactive tutorial
-            </a>
-          </li>
-          <li className="col-span-2">
-            <a className="resource flex" href="https://nx.app/">
-              <svg
-                width="36"
-                height="36"
-                viewBox="0 0 120 120"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+            <g clipPath="url(#clip0)">
+              <mask
+                id="mask0"
+                mask-type="alpha"
+                maskUnits="userSpaceOnUse"
+                x="8"
+                y="-67"
+                width="272"
+                height="265"
               >
                 <path
-                  d="M120 15V30C103.44 30 90 43.44 90 60C90 76.56 76.56 90 60 90C43.44 90 30 103.44 30 120H15C6.72 120 0 113.28 0 105V15C0 6.72 6.72 0 15 0H105C113.28 0 120 6.72 120 15Z"
-                  fill="#0E2039"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M278.697 109.423L211.045 -53.7565C207.92 -61.1259 200.934 -66.0388 192.478 -66.5652C184.021 -67.0916 176.484 -62.8805 172.623 -55.862L151.895 -18.8714C148.036 -20.5623 144.093 -22.022 140.084 -23.2261L73.1677 -43.4041C68.5718 -44.8078 63.6082 -44.106 59.5637 -41.2986C55.5193 -38.4912 53.3133 -34.2801 53.3133 -29.7181V9.78957L28.3114 2.21539C23.7155 0.811699 18.7519 1.51354 14.7075 4.32092C10.8469 7.12831 8.45703 11.3394 8.45703 16.0768V159.078C8.45703 168.728 15.0752 177.326 24.6347 180.133L78.4989 196.451C79.9696 196.978 81.6242 197.153 83.0949 197.153C86.2201 197.153 89.3453 196.276 91.919 194.346C95.9635 191.538 98.1695 187.327 98.1695 182.765V143.142L137.143 154.867C145.783 157.499 154.424 158.903 162.696 158.903C176.3 158.903 188.985 155.218 199.096 148.024C208.749 141.275 215.798 131.91 219.824 120.686L256.821 131.706C258.659 132.233 260.498 132.408 262.152 132.408C267.116 132.408 271.712 130.478 275.205 126.969C279.984 122.407 281.271 115.564 278.697 109.423ZM88.9776 140.376V182.765C88.9776 184.52 88.0585 186.099 86.5878 187.152C85.1171 188.204 83.2787 188.555 81.4403 188.029L27.5761 171.711C21.8771 169.957 18.0166 164.868 18.0166 159.253V16.2523C18.0166 14.4977 18.9357 12.9185 20.4064 11.8658C21.3256 10.9885 22.4286 10.6375 23.7155 10.6375C23.9913 10.6375 24.313 10.6814 24.6347 10.7253C24.9564 10.7691 25.2781 10.813 25.5539 10.813L53.3133 19.2226V113.458C53.3133 123.109 59.9314 131.706 69.4909 134.514L88.9776 140.376ZM88.9776 130.907L72.4323 125.916C66.7334 124.162 62.8728 119.073 62.8728 113.458V22.1186L79.4181 27.1309C85.1171 28.8855 88.9776 33.9739 88.9776 39.5887V130.907ZM98.1695 133.68V39.5887C98.3533 30.1138 91.919 21.5161 82.1757 18.5333L62.8728 12.6856V-29.7181C62.8728 -31.4727 63.792 -33.0519 65.2627 -34.1047C66.1819 -34.8065 67.4687 -35.1574 68.5718 -35.1574C69.0082 -35.1574 69.4446 -35.0476 69.9721 -34.9148C70.1112 -34.8797 70.2567 -34.8431 70.4101 -34.8065L137.143 -14.6284C140.623 -13.5788 144.051 -12.3206 147.412 -10.8726L107.729 59.9425C104.42 65.7328 104.052 72.5758 106.81 78.7169C109.384 84.8581 114.715 89.4201 121.333 91.3501L210.753 117.984C207.351 127.416 201.472 135.235 193.397 140.83C179.425 150.481 160.49 152.411 139.901 146.27L98.1695 133.68ZM180.896 -51.6509L160.239 -14.7889C196.67 4.93436 223.73 45.0707 223.73 82.9281V97.1405C223.73 102.314 223.231 107.28 222.258 111.992L259.578 123.109C262.704 124.161 266.013 123.284 268.219 121.003C270.425 118.722 271.16 115.388 269.873 112.581L202.221 -50.5982C200.567 -54.6338 196.522 -57.4412 191.926 -57.6166H191.191C186.779 -57.6166 182.918 -55.3356 180.896 -51.6509ZM214.171 83.1036C214.327 48.2492 189.311 11.3717 155.77 -6.81232L116.002 64.1536C114.163 67.4874 113.979 71.523 115.45 75.2077C116.921 78.8924 120.23 81.5243 124.09 82.7525L213.103 109.266C213.81 105.466 214.171 101.473 214.171 97.3159V83.1036Z"
+                  fill="url(#paint0_linear)"
+                  fillOpacity="0.5"
                 />
+              </mask>
+              <g mask="url(#mask0)">
                 <path
-                  d="M120 30V105C120 113.28 113.28 120 105 120H30C30 103.44 43.44 90 60 90C76.56 90 90 76.56 90 60C90 43.44 103.44 30 120 30Z"
-                  fill="white"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M255 187C255 192.523 250.523 197 245 197H10C4.47715 197 -1.4913e-08 192.523 0 187L4.77492e-07 10.168C4.92405e-07 4.64512 4.47715 0.167969 10 0.167969L245 0.167969C250.523 0.167969 255 4.64512 255 10.168V187Z"
+                  fill="black"
                 />
-              </svg>
-              <span className="gutter-left">Nx Cloud</span>
-            </a>
-          </li>
-        </ul>
-        <h2>Next Steps</h2>
-        <p>Here are some things you can do with Nx.</p>
-        <details open>
-          <summary>Add UI library</summary>
-          <pre>{`# Generate UI lib
-nx g @nrwl/react:lib ui
-
-# Add a component
-nx g @nrwl/react:component xyz --project ui`}</pre>
-        </details>
-        <details>
-          <summary>View dependency graph</summary>
-          <pre>{`nx dep-graph`}</pre>
-        </details>
-        <details>
-          <summary>Run affected commands</summary>
-          <pre>{`# see what's been affected by changes
-nx affected:dep-graph
-
-# run tests for current changes
-nx affected:test
-
-# run e2e tests for current changes
-nx affected:e2e
-  `}</pre>
-        </details>
-      </main>
-    </StyledApp>
+              </g>
+            </g>
+            <defs>
+              <linearGradient
+                id="paint0_linear"
+                x1="144.228"
+                y1="-66.6094"
+                x2="144.228"
+                y2="197.153"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stopColor="#4F4F4F" />
+                <stop offset="1" stopColor="#4F4F4F" stopOpacity="0" />
+              </linearGradient>
+              <clipPath id="clip0">
+                <rect width="255" height="197" fill="white" />
+              </clipPath>
+            </defs>
+          </BGSVG>
+        </HeaderContent>
+        <Main>
+          <Brand />
+          {loading ? <Skeleton /> : null}
+          <Route exact path="/">
+            teste
+          </Route>
+        </Main>
+      </Container>
+    </Router>
   );
-}
+};
 
 export default App;
