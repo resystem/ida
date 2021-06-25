@@ -28,10 +28,22 @@ phases:
       # Creating deploy folder
       - mkdir athentication-api
       
-      # populate deploy folder
-      - mkdir athentication-api
+      # populate dist into deploy folder
       - mkdir athentication-api/dist
       - cp -r dist/* athentication-api/dist/
+      
+      # Populate scripts into deploy folder
+      - mkdir athentication-api/scripts
+      - cp -r deploy/scripts/* athentication-api/scripts/
+    
+      # Populate server files into deploy folder
+      - mkdir athentication-api/server-files
+      - cp -r deploy/files/ida-authentication-api.service athentication-api/server-files/ida-authentication-api.service
+      - cp -r deploy/files/nginx.config athentication-api/server-files/default
+      
+      # Get config files
+      - cp package.json ./athentication-api/package.json
+      - cp appspec.yml ./athentication-api/appspec.yml
 
       # Delete node_modules
       - rm -rf node_modules
@@ -47,7 +59,11 @@ artifacts:
   files:
     - '**/*'
   secondary-artifacts:
-    athentication-api:
+    athentication:
+      files:
+        - '**/*'
+      base-directory: athentication-api
+    blah:
       files:
         - '**/*'
       base-directory: athentication-api
