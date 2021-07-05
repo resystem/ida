@@ -15,7 +15,7 @@ export interface VerifyData {
  */
 export const verify = ({ appId, appKey }: VerifyData): Promise<App> => {
   return axios.post(
-    `${process.env.NX_API_URL}/app/verify`,
+    `${process.env.NX_API_URL}/api/app/verify`,
     { id: appId, key: appKey },
     {
       headers: {
