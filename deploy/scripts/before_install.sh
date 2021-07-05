@@ -10,4 +10,4 @@ rm -rf /home/ubuntu/ida-accounts/dist/*
 rm /etc/nginx/sites-enabled/default
 
 
-rm -rf /lib/systemd/system/accounts
+rm -rf /lib/systemd/system/ida-accounts

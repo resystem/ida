@@ -1,2 +1,2 @@
 sudo pkill node
-sudo systemctl stop accounts
+sudo systemctl stop ida-accounts
