@@ -15,10 +15,7 @@ hooks:
     - location: ./ida-accounts/scripts/before_install.sh
       timeout: 300
       runas: root
-  ApplicationStop:
-    - location: ./ida-accounts/scripts/application_stop.sh
-      timeout: 300
-      runas: root
+
   ApplicationStart:
     - location: ./ida-accounts/scripts/application_start.sh
       timeout: 300
