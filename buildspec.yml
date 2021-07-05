@@ -43,7 +43,8 @@ phases:
       # Get config files
       - cp package.json ./ida-accounts/package.json
       - cp appspec.yml ./ida-accounts/appspec.yml
-
+      - echo $NX_API_URL >> test.txt
+      - echo $NX_SOCKET_API >> test.txt
       # Delete node_modules
       - rm -rf node_modules
 
