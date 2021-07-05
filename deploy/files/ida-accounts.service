@@ -1,0 +1,16 @@
+[Unit]
+Description=IDA ACCOUNTS
+Documentation=https://github.com/resystem/ida
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/ida-accounts
+ExecStart=/usr/bin/node dist/main
+EnvironmentFile=/etc/environments/ida-accounts.config
+Restart=always
+StartLimitBurst=0
+
+[Install]
+WantedBy=multi-user.target
