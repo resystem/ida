@@ -4,25 +4,25 @@ files:
   - source: ./dist/
     destination: /home/ubuntu/ida-accounts/dist/
 
-  - source: ./package.json
+  - source: ./ida-accounts/package.json
     destination: /home/ubuntu/ida-accounts/
  
-  - source: ./server-files/ida-accounts.service
+  - source: ./ida-accounts/server-files/ida-accounts.service
     destination: /lib/systemd/system/
 
-  - source: ./server-files/default
+  - source: ./ida-accounts/server-files/default
     destination: /etc/nginx/sites-enabled/
 
 hooks:
   BeforeInstall:
-    - location: ./scripts/before_install.sh
+    - location: ./ida-accounts/scripts/before_install.sh
       timeout: 300
       runas: root
   ApplicationStop:
-    - location: ./scripts/application_stop.sh
+    - location: ./ida-accounts/scripts/application_stop.sh
       timeout: 300
       runas: root
   ApplicationStart:
-    - location: ./scripts/application_start.sh
+    - location: ./ida-accounts/scripts/application_start.sh
       timeout: 300
       runas: root
