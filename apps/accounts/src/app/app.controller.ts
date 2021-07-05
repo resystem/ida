@@ -23,7 +23,7 @@ export const verify = async ({
   setApp,
   history,
 }: VerifyInterface) => {
-  let response;
+  let response: any;
 
   try {
     response = await verifyService({ appId, appKey });
