@@ -7,7 +7,7 @@ import axios from 'axios';
  * @returns {Pomise} request response
  */
 export const getUser = ({ search }: any): Promise<any> => {
-  return axios.get(`${process.env.NX_API_URL}/user/${search}`, {
+  return axios.get(`${process.env.NX_API_URL}/api/user/${search}`, {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export const signup = ({
   email,
 }: SignupData) => {
   return axios.post(
-    `${process.env.NX_API_URL}/user/signup`,
+    `${process.env.NX_API_URL}/api/user/signup`,
     {
       password,
       email: { address: email, valid: false, confirmation_code: null },
@@ -60,7 +60,7 @@ export const signup = ({
  */
 export const requestEmailConfirmation = ({ email }: any): Promise<any> => {
   return axios.post(
-    `${process.env.NX_API_URL}/user/request-email-confirmation`,
+    `${process.env.NX_API_URL}/api/user/request-email-confirmation`,
     { email },
     {
       headers: {
@@ -80,7 +80,7 @@ export const requestEmailConfirmation = ({ email }: any): Promise<any> => {
  */
 export const validateEmailCode = ({ email, code }: any): Promise<any> => {
   return axios.post(
-    `${process.env.NX_API_URL}/user/validate-email-code`,
+    `${process.env.NX_API_URL}/api/user/validate-email-code`,
     { email, code },
     {
       headers: {

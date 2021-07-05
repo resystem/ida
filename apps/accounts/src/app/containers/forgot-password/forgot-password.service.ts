@@ -12,7 +12,7 @@ interface SigninData {
  */
 export const requestForgotPassword = ({ email }: SigninData): any =>
   axios.post(
-    `${process.env.NX_API_URL}/user/request-reset-password`,
+    `${process.env.NX_API_URL}/api/user/request-reset-password`,
     { email },
     {
       headers: {
@@ -34,7 +34,7 @@ export const validateResetPasswordCode = ({
   code,
 }: any): Promise<any> => {
   return axios.post(
-    `${process.env.NX_API_URL}/user/validate-reset-password-code`,
+    `${process.env.NX_API_URL}/api/user/validate-reset-password-code`,
     { email, code },
     {
       headers: {
@@ -54,7 +54,7 @@ export const validateResetPasswordCode = ({
  */
 export const resetPassword = ({ email, code, password }: any): Promise<any> =>
   axios.post(
-    `${process.env.NX_API_URL}/user/reset-password`,
+    `${process.env.NX_API_URL}/api/user/reset-password`,
     { email, code, password },
     {
       headers: {

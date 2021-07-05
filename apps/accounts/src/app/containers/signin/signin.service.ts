@@ -14,7 +14,7 @@ interface SigninData {
  */
 export const signin = ({ email, password }: SigninData): any =>
   axios.post(
-    `${process.env.NX_API_URL}/user/signin`,
+    `${process.env.NX_API_URL}/api/user/signin`,
     { email, password },
     {
       headers: {
