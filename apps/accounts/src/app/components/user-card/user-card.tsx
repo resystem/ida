@@ -5,7 +5,7 @@ import { CardWrapper, Text } from './user-card.style';
 interface Props {
   id: string;
   token: string;
-  username: string;
+  firstName: string;
   avatarURI?: string | null;
   onClick(token: string, id: string, username: string): void;
 }
@@ -18,10 +18,10 @@ interface Props {
  * @param {string} props.username user`s username
  * @param {avatarURI} props.avatarURI user`s avatar link
  */
-const Card = ({ id, token, username, avatarURI, onClick }: Props) => (
-  <CardWrapper onClick={() => onClick(token, id, username)}>
-    <Avatar username={username} uri={avatarURI} />
-    <Text>{username}</Text>
+const Card = ({ id, token, firstName, avatarURI, onClick }: Props) => (
+  <CardWrapper onClick={() => onClick(token, id, firstName)}>
+    <Avatar username={firstName} uri={avatarURI} />
+    <Text>{firstName}</Text>
   </CardWrapper>
 );
 

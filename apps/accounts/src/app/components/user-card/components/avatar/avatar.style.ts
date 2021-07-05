@@ -17,7 +17,8 @@ export const InitialUsername = styled.div`
   border-radius: 50%;
   background-color: #fff;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 16px;
+  letter-spacing: 1px;
   line-height: 1em;
   text-transform: uppercase;
   color: #1d1d1d;

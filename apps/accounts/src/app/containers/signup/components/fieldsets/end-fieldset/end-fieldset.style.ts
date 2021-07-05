@@ -14,21 +14,39 @@ export const Fieldset = styled.fieldset`
   }
 `;
 
+export const Header = styled.header`
+  display: flex;
+  gap: 8px;
+  min-height: 56px;
+  color: ${({ resent }: { resent: boolean }) =>
+    resent ? '#48fea7' : '#ffffff'};
+
+  > svg {
+    display: ${({ resent }: { resent: boolean }) =>
+      resent ? 'block' : 'none'};
+  }
+`;
+
+export const Title = styled.h1`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.2em;
+
+  max-width: 230px;
+`;
+
 export const Text = styled.p`
   font-style: 400;
   font-weight: normal;
   font-size: 18px;
   line-height: 1.2em;
 
-  margin-bottom: 16px;
+  margin-top: 31px;
+  margin-bottom: 31px;
+
   color: #ffffff;
-`;
 
-export const CheckboxWrapper = styled.div`
-  margin-top: 22px;
-`;
-
-export const TermsText = styled.p`
   > a {
     text-decoration: underline;
     color: #ffffff;
@@ -36,8 +54,5 @@ export const TermsText = styled.p`
 `;
 
 export const ButtonWrapper = styled.div`
-  margin-top: 22px;
-
   display: flex;
-  justify-content: flex-end;
 `;

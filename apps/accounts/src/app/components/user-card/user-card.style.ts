@@ -16,4 +16,7 @@ export const CardWrapper = styled.div`
   }
 `;
 
-export const Text = styled.h3``;
+export const Text = styled.h3`
+  color: #ffffff;
+  font-weight: 400;
+`;

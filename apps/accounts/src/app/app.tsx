@@ -1,24 +1,28 @@
 import { ReactNode, useEffect, useState } from 'react';
-import queryString, { ParsedQuery } from 'query-string';
+import queryString from 'query-string';
 import {
   BrowserRouter as Router,
   Route,
   useHistory,
   useLocation,
+  Switch,
 } from 'react-router-dom';
 import ErrorPage from './containers/error-page/error-page';
 import LastUsers from './containers/last-users/last-users';
 import Skeleton from './components/skeleton/skeleton-page';
 import Brand from './components/brand/brand';
-import { Container, HeaderContent, Main, BGSVG } from './app.style';
-import { verify } from './app.controller';
-import '../assets/css/reset.css';
 import Signup from './containers/signup/signup';
+import Signin from './containers/signin/signin';
+import ForgotPassword from './containers/forgot-password/forgot-password';
+import { Container, HeaderContent, Main, BGSVG } from './app.style';
+import { initSocketConnection, verify } from './app.controller';
+import '../assets/css/reset.css';
+import { App as AppModel } from './models/app';
 
 interface LocalUser {
   ida: string;
   user: {
-    username: string;
+    first_name: string;
   };
   token: string;
 }
@@ -32,35 +36,45 @@ const VerifyContent = ({
   children,
   onVerified,
   setLastLoggedUsers,
+  setApp,
+  setSocket,
 }: {
   children: ReactNode;
-  onVerified(): void;
+  onVerified(verified: boolean): void;
+  setApp(app: AppModel): void;
+  setSocket(socket: any): void;
   setLastLoggedUsers(users: any): void;
 }) => {
   const history = useHistory();
   const location = useLocation();
-  const { k, id }: any = queryString.parse(location.search);
+  const { k, id, c }: any = queryString.parse(location.search);
 
   useEffect(() => {
-    verify({ appKey: k, appId: id, onVerified, history });
+    if (!k || !id || !c) {
+      onVerified(true);
+      history.push(`/error${location.search}`);
+    } else {
+      verify({ appKey: k, appId: id, onVerified, history, setApp });
+      initSocketConnection({ clientId: c, setSocket });
 
-    // get last logged users saved on local storage
-    const localUsers = window.localStorage.getItem('ida@users') || '{}';
-    const parsedLocalUsers = JSON.parse(localUsers).users || [];
+      // get last logged users saved on local storage
+      const localUsers = window.localStorage.getItem('ida@users') || '{}';
+      const parsedLocalUsers = JSON.parse(localUsers).users || [];
 
-    if (parsedLocalUsers.length < 1) {
-      // redirect to register page
-      history.push(`/signup${location.search}`);
+      if (parsedLocalUsers.length < 1) {
+        // redirect to register page
+        history.push(`/signup${location.search}`);
+      }
+
+      setLastLoggedUsers(
+        parsedLocalUsers.map(({ ida, token, user }: LocalUser) => ({
+          id: ida,
+          token,
+          first_name: user.first_name,
+          avatarURI: null,
+        })),
+      );
     }
-
-    setLastLoggedUsers(
-      parsedLocalUsers.map(({ ida, token, user }: LocalUser) => ({
-        id: ida,
-        token,
-        username: user.username,
-        avatarURI: null,
-      }))
-    );
   }, []);
 
   return <div>{children}</div>;
@@ -73,12 +87,16 @@ const VerifyContent = ({
 export const App = () => {
   const [globalLoading, setGlobalLoading] = useState(true);
   const [lastLoggedUsers, setLastLoggedUsers] = useState([]);
+  const [app, setApp] = useState<AppModel | null>(null);
+  const [socket, setSocket] = useState<any | null>(null);
 
   return (
     <Router>
       <VerifyContent
         onVerified={() => setGlobalLoading(false)}
         setLastLoggedUsers={setLastLoggedUsers}
+        setApp={setApp}
+        setSocket={setSocket}
       >
         <Container>
           <HeaderContent>
@@ -137,17 +155,23 @@ export const App = () => {
             {globalLoading ? (
               <Skeleton />
             ) : (
-              <>
+              <Switch>
                 <Route exact path="/">
                   <LastUsers users={lastLoggedUsers} />
                 </Route>
-                <Route exact path="/signup">
-                  <Signup />
+                <Route path="/signin">
+                  <Signin appName={app?.name || 'APP'} socket={socket} />
+                </Route>
+                <Route path="/signup">
+                  <Signup appName={app?.name || 'APP'} />
+                </Route>
+                <Route path="/forgot-password">
+                  <ForgotPassword appName={app?.name || 'APP'} />
                 </Route>
                 <Route exact path="/error">
                   <ErrorPage />
                 </Route>
-              </>
+              </Switch>
             )}
           </Main>
         </Container>

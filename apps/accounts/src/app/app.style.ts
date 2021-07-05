@@ -36,7 +36,7 @@ export const Main = styled.main`
   z-index: 1;
 
   @media (min-width: 1024px) {
-    padding: 60px 30px;
+    padding: 60px 45px;
     max-width: 450px;
 
     border: solid 2px rgba(255, 255, 255, 0.1);

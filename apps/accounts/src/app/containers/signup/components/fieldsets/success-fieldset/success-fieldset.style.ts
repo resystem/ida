@@ -14,7 +14,20 @@ export const Fieldset = styled.fieldset`
   }
 `;
 
+export const Title = styled.h1`
+  max-width: 250px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 1.2em;
+
+  color: #ffffff;
+
+  margin-bottom: 16px;
+`;
+
 export const Text = styled.p`
+  max-width: 85%;
+
   font-style: 400;
   font-weight: normal;
   font-size: 18px;
@@ -24,19 +37,8 @@ export const Text = styled.p`
   color: #ffffff;
 `;
 
-export const CheckboxWrapper = styled.div`
-  margin-top: 22px;
-`;
-
-export const TermsText = styled.p`
-  > a {
-    text-decoration: underline;
-    color: #ffffff;
-  }
-`;
-
 export const ButtonWrapper = styled.div`
-  margin-top: 22px;
+  margin-top: 72px;
 
   display: flex;
   justify-content: flex-end;

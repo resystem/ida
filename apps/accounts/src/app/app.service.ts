@@ -13,7 +13,10 @@ export interface VerifyData {
  * @param {string} data.appToken application token to be used on verification
  * @returns {Pomise} request response
  */
-export const verify = ({ appId, appKey }: VerifyData): Promise<App> => {
+export const verify = ({
+  appId,
+  appKey,
+}: VerifyData): Promise<{ data?: App }> => {
   return axios.post(
     `${process.env.NX_API_URL}/app/verify`,
     { id: appId, key: appKey },
@@ -22,6 +25,6 @@ export const verify = ({ appId, appKey }: VerifyData): Promise<App> => {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
       },
-    }
+    },
   );
 };
