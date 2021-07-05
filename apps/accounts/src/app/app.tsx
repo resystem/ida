@@ -40,7 +40,7 @@ const VerifyContent = ({
   setSocket,
 }: {
   children: ReactNode;
-  onVerified(verified: boolean): void;
+  onVerified(): void;
   setApp(app: AppModel): void;
   setSocket(socket: any): void;
   setLastLoggedUsers(users: any): void;
@@ -51,7 +51,7 @@ const VerifyContent = ({
 
   useEffect(() => {
     if (!k || !id || !c) {
-      onVerified(true);
+      onVerified();
       history.push(`/error${location.search}`);
     } else {
       verify({ appKey: k, appId: id, onVerified, history, setApp });

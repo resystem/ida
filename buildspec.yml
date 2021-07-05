@@ -26,30 +26,29 @@ phases:
       - echo Backend build completed on `date`
 
       # Creating deploy folder
-      - mkdir athentication-api
+      - mkdir ida-accounts
       
       # populate dist into deploy folder
-      - mkdir athentication-api/dist
-      - cp -r dist/* athentication-api/dist/
+      - mkdir ida-accounts/dist
+      - cp -r dist/* ida-accounts/dist/
       
       # Populate scripts into deploy folder
-      - mkdir athentication-api/scripts
-      - cp -r deploy/scripts/* athentication-api/scripts/
+      - mkdir ida-accounts/scripts
+      - cp -r deploy/scripts/* ida-accounts/scripts/
     
       # Populate server files into deploy folder
-      - mkdir athentication-api/server-files
-      - cp -r deploy/files/ida-authentication-api.service athentication-api/server-files/ida-authentication-api.service
-      - cp -r deploy/files/nginx.config athentication-api/server-files/default
+      - mkdir ida-accounts/server-files
+      - cp -r deploy/files/nginx.config ida-accounts/server-files/default
       
       # Get config files
-      - cp package.json ./athentication-api/package.json
-      - cp appspec.yml ./athentication-api/appspec.yml
+      - cp package.json ./ida-accounts/package.json
+      - cp appspec.yml ./ida-accounts/appspec.yml
 
       # Delete node_modules
       - rm -rf node_modules
 
       # List backck and frontend folders
-      - ls ./athentication-api
+      - ls ./ida-accounts
 
   post_build:
     commands:
@@ -62,8 +61,8 @@ artifacts:
     athentication:
       files:
         - '**/*'
-      base-directory: athentication-api
+      base-directory: ida-accounts
     blah:
       files:
         - '**/*'
-      base-directory: athentication-api
+      base-directory: ida-accounts
