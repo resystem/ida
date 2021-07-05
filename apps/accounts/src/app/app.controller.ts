@@ -28,7 +28,7 @@ export const verify = async ({
   try {
     response = await verifyService({ appId, appKey });
   } catch (err) {
-    console.log('🚀 ~ err', err);
+    console.log('🚀 ~ err', [err]);
     // try
     // history.push(`/error?${history.location.search}`);
   }

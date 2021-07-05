@@ -47,14 +47,14 @@ const VerifyContent = ({
 }) => {
   const history = useHistory();
   const location = useLocation();
-  const { k, id, c }: any = queryString.parse(location.search);
+  const { k, i, c }: any = queryString.parse(location.search);
 
   useEffect(() => {
-    if (!k || !id || !c) {
+    if (!k || !i || !c) {
       onVerified();
-      history.push(`/error${location.search}`);
+      // history.push(`/error${location.search}`);
     } else {
-      verify({ appKey: k, appId: id, onVerified, history, setApp });
+      verify({ appKey: k, appId: i, onVerified, history, setApp });
       initSocketConnection({ clientId: c, setSocket });
 
       // get last logged users saved on local storage
