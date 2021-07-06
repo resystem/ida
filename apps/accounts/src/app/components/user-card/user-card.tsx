@@ -7,7 +7,7 @@ interface Props {
   token: string;
   firstName: string;
   avatarURI?: string | null;
-  onClick(token: string, id: string, username: string): void;
+  onClick(): void;
 }
 
 /**
