@@ -49,7 +49,7 @@ export const initSocketConnection = async ({ setSocket, clientId }: any) => {
     console.log('🚀 ~ clientId', clientId);
 
     socket.emit('init', { client_type: 'ida', client_id: clientId });
-    socket.on('error_listenner', (err) => console.log('ERROR SOCKET CONNECTION', [err]));
+    socket.on('error_listenner', (err: any) => console.log('ERROR SOCKET CONNECTION', [err]));
 
     setSocket(socket);
   }
