@@ -21,6 +21,8 @@ export const HeaderContent = styled.header`
   overflow-y: hidden;
   top: 0;
   left: 0;
+
+  z-index: 1;
 `;
 
 export const BGSVG = styled.svg`
@@ -29,11 +31,12 @@ export const BGSVG = styled.svg`
 `;
 
 export const Main = styled.main`
+  position: relative;
   display: grid;
   width: 100%;
   gap: 45px;
 
-  z-index: 1;
+  z-index: 2;
 
   @media (min-width: 1024px) {
     padding: 60px 45px;
