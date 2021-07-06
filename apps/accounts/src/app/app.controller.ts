@@ -45,7 +45,7 @@ export const initSocketConnection = async ({ setSocket, clientId }: any) => {
   if (clientId) {
     const socket = await socketIOClient(process.env.NX_SOCKET_API || '', { transports: ['websocket'] });
     
-    console.log('🚀 ~ socket', socket);
+    console.log('🚀 ~ sockeat', socket);
     console.log('🚀 ~ clientId', clientId);
 
     socket.emit('init', { client_type: 'ida', client_id: clientId });
