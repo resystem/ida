@@ -161,7 +161,7 @@ export const App = () => {
             ) : (
               <Switch>
                 <Route exact path="/">
-                  <LastUsers users={lastLoggedUsers} />
+                  <LastUsers socket={socket} users={lastLoggedUsers} />
                 </Route>
                 <Route path="/signin">
                   <Signin appName={app?.name || 'APP'} socket={socket} />
