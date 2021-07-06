@@ -1,4 +1,4 @@
-import socketClient from 'socket.io-client';
+import socketIOClient from 'socket.io-client';
 import { verify as verifyService } from './app.service';
 import { App } from './models/app';
 
@@ -43,11 +43,10 @@ export const verify = async ({
  */
 export const initSocketConnection = async ({ setSocket, clientId }: any) => {
   if (clientId) {
-    const socket = await socketClient(process.env.NX_SOCKET_API || '', {
-      transports: ['websocket'],
-    });
-
+    const socket = await socketIOClient(process.env.NX_SOCKET_API || '', { transports: ['websocket'] });
+    
     console.log('🚀 ~ socket', socket);
+    console.log('🚀 ~ clientId', clientId);
 
     socket.emit('init', { client_type: 'ida', client_id: clientId });
     socket.on('error_listenner', (err) => console.log('ERROR SOCKET CONNECTION', [err]));
