@@ -1,4 +1,4 @@
-import { io as socketIOClient } from 'socket.io-client';
+import socketIOClient from 'socket.io-client';
 import { verify as verifyService } from './app.service';
 import { App } from './models/app';
 
