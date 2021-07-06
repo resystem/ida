@@ -30,7 +30,7 @@ export const verify = async ({
   } catch (err) {
     console.log('🚀 ~ err', [err]);
     // try
-    // history.push(`/error?${history.location.search}`);
+    history.push(`/error?${history.location.search}`);
   }
 
   setApp(response?.data || null);

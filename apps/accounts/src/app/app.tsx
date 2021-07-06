@@ -52,7 +52,7 @@ const VerifyContent = ({
   useEffect(() => {
     if (!k || !i || !c) {
       onVerified();
-      // history.push(`/error${location.search}`);
+      history.push(`/error${location.search}`);
     } else {
       verify({ appKey: k, appId: i, onVerified, history, setApp });
       initSocketConnection({ clientId: c, setSocket });

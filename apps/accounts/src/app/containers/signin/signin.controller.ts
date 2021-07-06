@@ -87,6 +87,8 @@ export const submit = async ({
     first_name: signinResponse.data.first_name,
     last_name: signinResponse.data.last_name,
   };
+  
+  console.log('🚀 ~ data', data);
 
   socket.emit('update_auth', { user: data, client_id: clientId });
 };

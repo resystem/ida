@@ -3,6 +3,9 @@ os: linux
 files:
   - source: ./dist/
     destination: /home/ubuntu/ida-accounts/dist/
+  
+  - source: ./dist/apps/accounts
+    destination: /usr/share/nginx/ida-accounts/
 
   - source: ./ida-accounts/package.json
     destination: /home/ubuntu/ida-accounts/
@@ -15,10 +18,12 @@ hooks:
     - location: ./ida-accounts/scripts/before_install.sh
       timeout: 300
       runas: root
+
   ApplicationStop:
     - location: ./ida-accounts/scripts/application_stop.sh
       timeout: 300
-      runas: root
+      runas: root 
+
   ApplicationStart:
     - location: ./ida-accounts/scripts/application_start.sh
       timeout: 300
