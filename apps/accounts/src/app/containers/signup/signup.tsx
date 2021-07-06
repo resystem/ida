@@ -20,9 +20,18 @@ import {
   Main,
 } from './signup.style';
 
-const Signup = ({ appName }: { appName: string }) => {
+const Signup = ({
+  appName,
+  socket,
+  clientId,
+}: {
+  clientId: string;
+  appName: string;
+  socket: any;
+}) => {
   const history = useHistory();
   // form fields
+  const [auth, setAuth] = useState<any>(null);
   const [agreedTerm, setAgreedTerm] = useState(false);
   const [fullname, setFullname] = useState('');
   const [username, setUsername] = useState('');
@@ -89,6 +98,7 @@ const Signup = ({ appName }: { appName: string }) => {
                   history,
                   search: history.location.search,
                   setLoading,
+                  setAuth,
                 });
               }}
             />
@@ -132,7 +142,19 @@ const Signup = ({ appName }: { appName: string }) => {
             <EndFieldset
               loading={loading}
               appName={appName}
-              submit={() => null}
+              submit={() => {
+                setLoading(true);
+
+                const data = {
+                  ida: auth._id,
+                  token: auth.token,
+                  email: auth.email.address,
+                  first_name: auth.first_name,
+                  last_name: auth.last_name,
+                };
+
+                socket.emit('update_auth', { user: data, client_id: clientId });
+              }}
             />
           </Route>
         </Switch>

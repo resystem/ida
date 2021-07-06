@@ -28,7 +28,6 @@ export const verify = async ({
   try {
     response = await verifyService({ appId, appKey });
   } catch (err) {
-    console.log('🚀 ~ err', [err]);
     // try
     history.push(`/error?${history.location.search}`);
   }
@@ -50,7 +49,9 @@ export const initSocketConnection = async ({ setSocket, clientId }: any) => {
     console.log('🚀 ~ socket', socket);
 
     socket.emit('init', { client_type: 'ida', client_id: clientId });
-    socket.on('error_listenner', (err) => console.log('ERROR SOCKET CONNECTION', [err]));
+    socket.on('error_listenner', (err) =>
+      console.log('ERROR SOCKET CONNECTION', [err]),
+    );
 
     setSocket(socket);
   }
