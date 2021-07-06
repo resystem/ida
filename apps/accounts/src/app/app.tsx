@@ -23,6 +23,8 @@ interface LocalUser {
   ida: string;
   user: {
     first_name: string;
+    last_name: string;
+    email: string;
   };
   token: string;
 }
@@ -70,7 +72,9 @@ const VerifyContent = ({
         parsedLocalUsers.map(({ ida, token, user }: LocalUser) => ({
           id: ida,
           token,
+          email: user.email,
           first_name: user.first_name,
+          last_name: user.last_name,
           avatarURI: null,
         })),
       );

@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import UserCard from '../../components/user-card/user-card';
+import { quicklySignin } from './last-users.controller';
 import {
   Section,
   Header,
@@ -17,24 +19,27 @@ import {
  * @returns
  */
 const renderCards = (users: any[], onClick: any) =>
-  users.map(({ first_name, image_uri: avatarURI, id, token }) => (
-    <CardWrapper key={id}>
-      <UserCard
-        id={id}
-        token={token}
-        onClick={onClick}
-        firstName={first_name}
-        avatarURI={avatarURI}
-      />
-    </CardWrapper>
-  ));
+  users.map(
+    ({ first_name, last_name, image_uri: avatarURI, id, token, email }) => (
+      <CardWrapper key={id}>
+        <UserCard
+          id={id}
+          token={token}
+          onClick={() => onClick({ email, ida: id, token })}
+          firstName={`${first_name} ${last_name}`}
+          avatarURI={avatarURI}
+        />
+      </CardWrapper>
+    ),
+  );
 
 /**
  *
  * @returns
  */
-const LastUsers = ({ users, appName }: any) => {
+const LastUsers = ({ users, appName, clientId, socket }: any) => {
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
 
   return (
     <Section>
@@ -44,7 +49,19 @@ const LastUsers = ({ users, appName }: any) => {
         </ActionText>
         <Title>Escolha uma conta para continuar</Title>
       </Header>
-      <ListWrapper>{renderCards(users, () => null)}</ListWrapper>
+      <ListWrapper>
+        {renderCards(users, ({ email, ida, token }: any) =>
+          quicklySignin({
+            ida,
+            token,
+            clientId,
+            email,
+            socket,
+            history,
+            setLoading,
+          }),
+        )}
+      </ListWrapper>
       <Footer>
         <Link to={`/signin${history.location.search}`}>
           Entrar com outra conta

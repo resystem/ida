@@ -87,7 +87,7 @@ export const submit = async ({
     first_name: signinResponse.data.first_name,
     last_name: signinResponse.data.last_name,
   };
-  
+
   console.log('🚀 ~ data', data);
 
   console.log('🚀 ~ clientId', clientId);
