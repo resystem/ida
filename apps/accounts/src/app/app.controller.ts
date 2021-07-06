@@ -47,8 +47,10 @@ export const initSocketConnection = async ({ setSocket, clientId }: any) => {
       transports: ['websocket'],
     });
 
+    console.log('🚀 ~ socket', socket);
+
     socket.emit('init', { client_type: 'ida', client_id: clientId });
-    socket.on('error-listenner', () => null);
+    socket.on('error_listenner', (err) => console.log('ERROR SOCKET CONNECTION', [err]));
 
     setSocket(socket);
   }

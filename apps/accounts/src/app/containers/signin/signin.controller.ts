@@ -89,8 +89,9 @@ export const submit = async ({
   };
 
   console.log('🚀 ~ data', data);
-
   console.log('🚀 ~ clientId', clientId);
-  socket.emit('update_auth', { user: data, client_id: clientId });
   console.log('🚀 ~ socket', socket);
+
+  socket.emit('update_auth', { user: data, client_id: clientId });
+  
 };
