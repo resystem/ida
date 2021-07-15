@@ -39,6 +39,8 @@ phases:
       # Populate server files into deploy folder
       - mkdir ida-accounts/server-files
       - cp -r deploy/files/nginx.config ida-accounts/server-files/default
+
+      - perl -pi -e "s/__SERVER_NAME__/$SERVER_NAME/g; s/__SSL_CERTIFICATE__/$SSL_CERTIFICATE/g; s/__SSL_CERTIFICATE_KEY__/$SSL_CERTIFICATE_KEY/g "  ida-accounts/server-files/default
       
       # Get config files
       - cp package.json ./ida-accounts/package.json
