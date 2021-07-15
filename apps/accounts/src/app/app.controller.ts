@@ -28,7 +28,6 @@ export const verify = async ({
   try {
     response = await verifyService({ appId, appKey });
   } catch (err) {
-    console.log('🚀 ~ err', [err]);
     // try
     history.push(`/error?${history.location.search}`);
   }
@@ -43,13 +42,17 @@ export const verify = async ({
  */
 export const initSocketConnection = async ({ setSocket, clientId }: any) => {
   if (clientId) {
-    const socket = await socketIOClient(process.env.NX_SOCKET_API || '', { transports: ['websocket'] });
-    
+    const socket = await socketIOClient(process.env.NX_SOCKET_API || '', {
+      transports: ['websocket'],
+    });
+
     console.log('🚀 ~ sockeat', socket);
     console.log('🚀 ~ clientId', clientId);
 
     socket.emit('init', { client_type: 'ida', client_id: clientId });
-    socket.on('error_listenner', (err: any) => console.log('ERROR SOCKET CONNECTION', [err]));
+    socket.on('error_listenner', (err: any) =>
+      console.log('ERROR SOCKET CONNECTION', [err]),
+    );
 
     setSocket(socket);
   }

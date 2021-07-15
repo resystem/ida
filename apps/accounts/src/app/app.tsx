@@ -40,10 +40,12 @@ const VerifyContent = ({
   setLastLoggedUsers,
   setApp,
   setSocket,
+  setClientId,
 }: {
   children: ReactNode;
   onVerified(): void;
   setApp(app: AppModel): void;
+  setClientId(clientId: string): void;
   setSocket(socket: any): void;
   setLastLoggedUsers(users: any): void;
 }) => {
@@ -56,6 +58,7 @@ const VerifyContent = ({
       onVerified();
       history.push(`/error${location.search}`);
     } else {
+      setClientId(c);
       verify({ appKey: k, appId: i, onVerified, history, setApp });
       initSocketConnection({ clientId: c, setSocket });
 
@@ -90,6 +93,7 @@ const VerifyContent = ({
  */
 export const App = () => {
   const [globalLoading, setGlobalLoading] = useState(true);
+  const [clientId, setClientId] = useState<string | null>(null);
   const [lastLoggedUsers, setLastLoggedUsers] = useState([]);
   const [app, setApp] = useState<AppModel | null>(null);
   const [socket, setSocket] = useState<any | null>(null);
@@ -101,6 +105,7 @@ export const App = () => {
         setLastLoggedUsers={setLastLoggedUsers}
         setApp={setApp}
         setSocket={setSocket}
+        setClientId={setClientId}
       >
         <Container>
           <HeaderContent>
@@ -161,13 +166,22 @@ export const App = () => {
             ) : (
               <Switch>
                 <Route exact path="/">
-                  <LastUsers socket={socket} users={lastLoggedUsers} />
+                  <LastUsers
+                    users={lastLoggedUsers}
+                    appName={app?.name}
+                    socket={socket}
+                    clientId={clientId}
+                  />
                 </Route>
                 <Route path="/signin">
                   <Signin appName={app?.name || 'APP'} socket={socket} />
                 </Route>
                 <Route path="/signup">
-                  <Signup appName={app?.name || 'APP'} />
+                  <Signup
+                    clientId={clientId || ''}
+                    appName={app?.name || 'APP'}
+                    socket={socket}
+                  />
                 </Route>
                 <Route path="/forgot-password">
                   <ForgotPassword appName={app?.name || 'APP'} />

@@ -42,6 +42,7 @@ export const signupUser = async ({
   history,
   search,
   setLoading,
+  setAuth,
 }: any) => {
   setLoading(true);
 
@@ -82,6 +83,8 @@ export const signupUser = async ({
   });
 
   setLoading(false);
+  console.log(response.data);
+  setAuth(response.data);
   history.push(`/signup/success${search}`);
 };
 

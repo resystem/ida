@@ -7,7 +7,7 @@ interface Props {
   token: string;
   firstName: string;
   avatarURI?: string | null;
-  onClick(token: string, id: string, username: string): void;
+  onClick(): void;
 }
 
 /**
@@ -18,8 +18,8 @@ interface Props {
  * @param {string} props.username user`s username
  * @param {avatarURI} props.avatarURI user`s avatar link
  */
-const Card = ({ id, token, firstName, avatarURI, onClick }: Props) => (
-  <CardWrapper onClick={() => onClick(token, id, firstName)}>
+const Card = ({ firstName, avatarURI, onClick }: Props) => (
+  <CardWrapper onClick={onClick}>
     <Avatar username={firstName} uri={avatarURI} />
     <Text>{firstName}</Text>
   </CardWrapper>
