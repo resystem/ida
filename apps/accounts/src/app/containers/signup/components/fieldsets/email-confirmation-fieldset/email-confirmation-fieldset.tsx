@@ -1,3 +1,4 @@
+import { extractNumbers } from 'apps/accounts/src/app/utils/numbers.util';
 import { useEffect } from 'react';
 import {
   Fieldset,
@@ -51,14 +52,14 @@ const EmailConfirmationFieldset = ({
         </svg>
       </Header>
       <Description>
-        Insira o código enviado para {email}. Verifique sua caixa de spam e
+        Insira o código (apenas os números) enviado para {email}. Verifique sua caixa de spam e
         outros filtros de email.
       </Description>
       <InputGroup>
         <InputCode
           placeholder="XXXX"
           onChange={({ target }) => {
-            setCode(target.value);
+            setCode(extractNumbers(target.value));
           }}
         />
         <ErrorText hide={!error}>
