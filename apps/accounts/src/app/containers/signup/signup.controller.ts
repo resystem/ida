@@ -1,4 +1,5 @@
 import { saveUserOnLocalStorage } from '../../utils/localStorage.util';
+import { extractNumbers } from '../../utils/numbers.util';
 import {
   getUser,
   requestEmailConfirmation,
@@ -140,7 +141,7 @@ export const requestCodeValidation = async ({
   setLoading(true);
 
   try {
-    await validateEmailCode({ email, code });
+    await validateEmailCode({ email, code: extractNumbers(code) });
   } catch (err) {
     // to do
     setLoading(false);

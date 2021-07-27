@@ -37,7 +37,7 @@ const Signup = ({
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState('IDA-');
   // context states
   const [errors, setErrors] = useState<any>({});
   const [loading, setLoading] = useState(false);
@@ -134,6 +134,7 @@ const Signup = ({
               }
               error={errors.code}
               code={code}
+              email={email}
               setCode={setCode}
               resentConfirmation={resentConfirmation}
             />
